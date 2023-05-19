@@ -1,20 +1,25 @@
 import React from 'react';
-import DeckGL from '@deck.gl/react/typed';
+import GoogleMapReact from 'google-map-react';
 
 const Map = () => {
-  const initialViewState = {
-    longitude: 39.132906,
-    latitude: -84.514949,
-    zoom: 13,
-    pitch: 0,
-    bearing: 0,
+  // TODO: Update Security Rules: https://console.cloud.google.com/apis/credentials/key/644506b1-6086-4a19-acf4-b8c80db2f6af?project=nathan-wick-catmap
+  const GoogleMapsAPIKey = '';
+  const defaultProps = {
+    center: {
+      lat: 39.132906,
+      lng: -84.514949,
+    },
+    zoom: 16,
   };
 
-  return <div>
-    <DeckGL
-      initialViewState={initialViewState}
-      controller={true}
-      layers={[]} />
+  return <div
+    style={{height: '80vh', width: '100vw'}}>
+    <GoogleMapReact
+      bootstrapURLKeys={{key: GoogleMapsAPIKey}}
+      defaultCenter={defaultProps.center}
+      defaultZoom={defaultProps.zoom}
+      yesIWantToUseGoogleMapApiInternals>
+    </GoogleMapReact>
   </div>;
 };
 
