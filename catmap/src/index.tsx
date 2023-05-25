@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './styles/index.css';
 import Map from './views/Map';
 import 'bootstrap/dist/css/bootstrap.css';
+import Firebase from './contexts/Firebase';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -10,6 +11,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
     <React.StrictMode>
-      <Map />
+      <Firebase>
+        <Map />
+      </Firebase>
     </React.StrictMode>,
 );

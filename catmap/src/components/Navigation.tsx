@@ -3,12 +3,12 @@ import {Container, Nav, Navbar} from 'react-bootstrap';
 import {MapFill} from 'react-bootstrap-icons';
 
 const Navigation = () => <Navbar
-  bg='success'
-  variant="dark"
+  bg='light'
+  variant="light"
   expand='lg'>
   <Container>
     <Navbar.Brand
-      className='fw-bold'>
+      className='fw-bold text-danger'>
       <MapFill
         className='mx-2' />
       CatMap
