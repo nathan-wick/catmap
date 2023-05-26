@@ -3,6 +3,7 @@ import React, {FC, createContext} from 'react';
 
 export const FirebaseContext =
     createContext<FirebaseApp | undefined>(undefined);
+
 export const FirebaseContextProvider: FC<{
     children: JSX.Element
 }> = ({children}) => {
