@@ -1,11 +1,10 @@
 import React, {useContext} from 'react';
 import GoogleMapReact from 'google-map-react';
 import {ThemeContext} from '../contexts/Theme';
+import googleAPIKey from '../information/googleAPIKey';
 
 const Map = () => {
   const {theme} = useContext(ThemeContext);
-  // TODO: Update Security Rules: https://console.cloud.google.com/apis/credentials/key/644506b1-6086-4a19-acf4-b8c80db2f6af?project=nathan-wick-catmap
-  const GoogleMapsAPIKey = '';
   const defaultProps = {
     center: {
       lat: 39.132906,
@@ -18,7 +17,7 @@ const Map = () => {
     style={{height: '80vh', width: '100vw'}}>
     <GoogleMapReact
       key={theme}
-      bootstrapURLKeys={{key: GoogleMapsAPIKey}}
+      bootstrapURLKeys={{key: googleAPIKey}}
       defaultCenter={defaultProps.center}
       defaultZoom={defaultProps.zoom}
       options={{

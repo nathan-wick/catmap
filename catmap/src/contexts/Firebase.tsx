@@ -1,5 +1,6 @@
 import {FirebaseApp, initializeApp} from 'firebase/app';
 import React, {FC, createContext} from 'react';
+import googleAPIKey from '../information/googleAPIKey';
 
 export const FirebaseContext =
     createContext<FirebaseApp | undefined>(undefined);
@@ -8,7 +9,7 @@ export const FirebaseContextProvider: FC<{
     children: JSX.Element
 }> = ({children}) => {
   const firebaseConfig = {
-    apiKey: '',
+    apiKey: googleAPIKey,
     authDomain: 'nathan-wick-catmap.firebaseapp.com',
     projectId: 'nathan-wick-catmap',
     storageBucket: 'nathan-wick-catmap.appspot.com',
