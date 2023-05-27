@@ -5,6 +5,7 @@ import Home from './views/Home';
 import 'bootstrap/dist/css/bootstrap.css';
 import Firebase from './contexts/Firebase';
 import Theme from './contexts/Theme';
+import Facilities from './contexts/Facilities';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -14,7 +15,9 @@ root.render(
     <React.StrictMode>
       <Firebase>
         <Theme>
-          <Home />
+          <Facilities>
+            <Home />
+          </Facilities>
         </Theme>
       </Firebase>
     </React.StrictMode>,
