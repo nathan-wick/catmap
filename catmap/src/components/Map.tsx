@@ -1,44 +1,50 @@
 import React, {useContext} from 'react';
-import GoogleMapReact from 'google-map-react';
 import {ThemeContext} from '../contexts/Theme';
 import googleAPIKey from '../information/googleAPIKey';
 import {FacilitiesContext} from '../contexts/Facilities';
-import {MarkerProps} from '../types/MarkerProps';
-
-const Marker: React.FC<MarkerProps> = ({name}) => <div>
-  {name}
-</div>;
+import {GoogleMap, LoadScript, Marker} from '@react-google-maps/api';
 
 const Map = () => {
   const {theme} = useContext(ThemeContext);
   const {currentFacilityData} = useContext(FacilitiesContext);
   const defaultProps = {
+    style: {
+      height: '80vh',
+      width: '100vw',
+    },
     center: {
       lat: 39.132906,
       lng: -84.514949,
     },
     zoom: 16,
   };
-  return <div
-    style={{height: '80vh', width: '100vw'}}>
-    <GoogleMapReact
-      key={theme}
-      bootstrapURLKeys={{key: googleAPIKey}}
-      defaultCenter={defaultProps.center}
-      defaultZoom={defaultProps.zoom}
+
+  return <LoadScript
+    googleMapsApiKey={googleAPIKey}>
+    <GoogleMap
+      mapContainerStyle={defaultProps.style}
+      center={defaultProps.center}
+      zoom={defaultProps.zoom}
       options={{
         mapId: theme === 'light' ? '64e83980abf9f725' : '5b0d3e8becae82a8',
-      }}
-      yesIWantToUseGoogleMapApiInternals>
+      }}>
       {
-        currentFacilityData.map((facility) => <Marker
-          key={facility.name}
-          name={facility.name}
-          lat={facility.location?.latitude}
-          lng={facility.location?.longitude} />)
+        currentFacilityData.map((facility, index) => <Marker
+          key={index}
+          icon={`http://maps.google.com/mapfiles/ms/icons/${
+            facility.occupancy.available < facility.occupancy.capacity / 4 ?
+              'red' :
+              facility.occupancy.available < facility.occupancy.capacity / 2 ?
+                'yellow' :
+                'green'
+          }-dot.png`}
+          position={{
+            lat: facility.location?.latitude ?? 0,
+            lng: facility.location?.longitude ?? 0,
+          }} />)
       }
-    </GoogleMapReact>
-  </div>;
+    </GoogleMap>
+  </LoadScript>;
 };
 
 export default Map;
