@@ -40,7 +40,7 @@ const Map = () => {
     googleMapsApiKey={googleAPIKey}>
     <GoogleMap
       mapContainerStyle={{
-        height: '80vh',
+        height: '74vh',
         width: '100vw',
       }}
       center={{
@@ -50,9 +50,12 @@ const Map = () => {
       zoom={16}
       options={{
         mapId: theme === 'light' ? '64e83980abf9f725' : '5b0d3e8becae82a8',
+        disableDefaultUI: true,
       }}>
       {
-        currentFacilityData.filter((facility) => facility.location)
+        currentFacilityData
+            .filter((facility) =>
+              facility.location?.latitude && facility.location?.longitude)
             .map((facility, index) => <Marker
               key={index}
               onClick={() => onMarkerClick(facility, true)}

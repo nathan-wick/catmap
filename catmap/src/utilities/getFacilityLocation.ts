@@ -13,8 +13,8 @@ const getFacilityLocation = (name: string) => {
       facilityLocation.longitude = -84.516847;
       break;
     case 'CALHOUN_GARAGE':
-      facilityLocation.latitude = 39.129139;
-      facilityLocation.longitude = -84.513680;
+      facilityLocation.latitude = 39.128363;
+      facilityLocation.longitude = -84.516566;
       break;
     case 'CAMPUS_GREEN_GARAGE':
       facilityLocation.latitude = 39.135359;
@@ -39,10 +39,6 @@ const getFacilityLocation = (name: string) => {
     case 'STRATFORD_GARAGE':
       facilityLocation.latitude = 39.130637;
       facilityLocation.longitude = -84.521114;
-      break;
-    case 'UPA_LOT':
-      facilityLocation.latitude = 39.128363;
-      facilityLocation.longitude = -84.516566;
       break;
     case 'UNIVERSITY_AVE_GARAGE':
       facilityLocation.latitude = 39.133281;
