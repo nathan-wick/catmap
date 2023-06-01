@@ -24,8 +24,8 @@ export const ThemeContextProvider: FC<{
   useEffect(() => {
     if (preferredTheme !== theme) {
       localStorage.setItem('theme', theme);
+      location.reload();
     }
-    document.querySelector('html')?.setAttribute('data-bs-theme', theme);
   }, [theme]);
 
   return <ThemeContext.Provider value={themeState}>
