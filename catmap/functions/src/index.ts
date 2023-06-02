@@ -5,6 +5,7 @@ import getCurrentFacilityData from "./utilities/getCurrentFacilityData";
 import {getFirestore} from "firebase-admin/firestore";
 import changeTimezone from "./utilities/changeTimezone";
 import getStoredFacilityData from "./utilities/getStoredFacilityData";
+import {FacilityDataDTO} from "./types/FacilityDataDTO";
 
 initializeApp();
 
@@ -13,11 +14,9 @@ const database = getFirestore();
 exports.getFacilityData = onCall(async () => {
   const today = changeTimezone(new Date(), "America/New_York");
   const lastWeek = new Date(today.getDate() - 7);
-  const currentFacilityData = await getCurrentFacilityData();
   const todayFacilityData = await getStoredFacilityData(today, database);
   const lastWeekFacilityData = await getStoredFacilityData(lastWeek, database);
-  const facilityData = {
-    currentFacilityData,
+  const facilityData: FacilityDataDTO = {
     todayFacilityData,
     lastWeekFacilityData,
   };
@@ -41,6 +40,7 @@ exports.storeFacilityData = onSchedule("0 * * * *", async () => {
       .doc(String(today.getHours()));
 
     await documentReference.set({
+      hour: today.getHours(),
       facilityData: currentFacilityData,
     });
   }

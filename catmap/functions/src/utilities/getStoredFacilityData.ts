@@ -12,7 +12,8 @@ const getStoredFacilityData = async (
     .collection("days")
     .doc(String(date.getDate()))
     .collection("hours");
-  const dateCollectionSnapshot = await dateCollectionReference.get();
+  const dateCollectionSnapshot = await dateCollectionReference
+    .orderBy("hour").get();
   const storedFacilityData: Facility[][] = [];
 
   dateCollectionSnapshot.forEach((document) =>

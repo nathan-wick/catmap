@@ -3,11 +3,12 @@ import {FacilitiesContext} from '../contexts/Facilities';
 import {Col, Row} from 'react-bootstrap';
 
 const Map = () => {
-  const {currentFacilityData} = useContext(FacilitiesContext);
+  const {todayFacilityData} = useContext(FacilitiesContext);
+  const currentFacilityData = todayFacilityData[todayFacilityData.length - 1];
 
   return <Row>
     {
-      currentFacilityData
+      currentFacilityData && currentFacilityData
           .filter((facility) =>
             facility.location?.latitude && facility.location?.longitude)
           .map((facility, index) => <Col

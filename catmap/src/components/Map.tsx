@@ -13,7 +13,8 @@ import {InformationWindow} from '../types/InformationWindow';
 
 const Map = () => {
   const {theme} = useContext(ThemeContext);
-  const {currentFacilityData} = useContext(FacilitiesContext);
+  const {todayFacilityData} = useContext(FacilitiesContext);
+  const currentFacilityData = todayFacilityData[todayFacilityData.length - 1];
   const [informationWindows, setInformationWindows] =
     useState<InformationWindow[]>([]);
 
@@ -30,10 +31,12 @@ const Map = () => {
   };
 
   useEffect(() => {
-    setInformationWindows(currentFacilityData.map((facility) => ({
-      name: facility.name,
-      isOpen: false,
-    })));
+    if (currentFacilityData) {
+      setInformationWindows(currentFacilityData.map((facility) => ({
+        name: facility.name,
+        isOpen: false,
+      })));
+    }
   }, [currentFacilityData]);
 
   return <LoadScript
@@ -53,13 +56,13 @@ const Map = () => {
         disableDefaultUI: true,
       }}>
       {
-        currentFacilityData
+        currentFacilityData && currentFacilityData
             .filter((facility) =>
               facility.location?.latitude && facility.location?.longitude)
             .map((facility, index) => <Marker
               key={index}
+              label={facility.name}
               onClick={() => onMarkerClick(facility, true)}
-              animation={google.maps.Animation.DROP}
               icon={`http://maps.google.com/mapfiles/ms/icons/${ // TODO Replace with custom icons
                 facility.occupancy.available < facility.occupancy.capacity / 4 ?
                   'red' :

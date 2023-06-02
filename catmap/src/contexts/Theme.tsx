@@ -25,6 +25,14 @@ export const ThemeContextProvider: FC<{
     if (preferredTheme !== theme) {
       localStorage.setItem('theme', theme);
       location.reload();
+    } else {
+      if (theme === 'light') {
+        document.body.style.backgroundColor = '#f8f9fa';
+        document.body.style.color = '#212529';
+      } else {
+        document.body.style.backgroundColor = '#212529';
+        document.body.style.color = '#f8f9fa';
+      }
     }
   }, [theme]);
 
