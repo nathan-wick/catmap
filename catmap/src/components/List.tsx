@@ -1,8 +1,9 @@
 import React, {useContext} from 'react';
 import {FacilitiesContext} from '../contexts/Facilities';
 import {Col, Row} from 'react-bootstrap';
+import Chart from './Chart';
 
-const Map = () => {
+const List = () => {
   const {todayFacilityData} = useContext(FacilitiesContext);
   const currentFacilityData = todayFacilityData[todayFacilityData.length - 1];
 
@@ -28,10 +29,12 @@ const Map = () => {
                   {facility.occupancy.available}
                 </span> Available Spots
               </p>
+              <Chart
+                thisFacilityData={facility} />
             </div>
           </Col>)
     }
   </Row>;
 };
 
-export default Map;
+export default List;
