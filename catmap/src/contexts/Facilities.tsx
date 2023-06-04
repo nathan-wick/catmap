@@ -2,7 +2,6 @@ import React, {FC, createContext, useEffect, useState} from 'react';
 import {FacilityDataDTO} from '../types/FacilityDataDTO';
 import {getFunctions, httpsCallable} from 'firebase/functions';
 import getFacilityLocation from '../utilities/getFacilityLocation';
-import changeTimezone from '../utilities/changeTimezone';
 
 const emptyFacilityData: FacilityDataDTO = {
   todayFacilityData: [],
@@ -20,7 +19,7 @@ export const FacilitiesContextProvider: FC<{
   const functions = getFunctions();
   const getFacilityData = httpsCallable(functions, 'getFacilityData');
 
-  const getNewFacilityData = () => {
+  useEffect(() => {
     getFacilityData()
         .then((result) => {
           const newFacilityData = result.data as FacilityDataDTO;
@@ -32,35 +31,13 @@ export const FacilitiesContextProvider: FC<{
               const location = getFacilityLocation(facility.name);
               facility.location = location;
             }
-            localStorage.setItem(
-                'facilityData',
-                JSON.stringify(newFacilityData),
-            );
             setFacilityData(newFacilityData);
-            console.log('Set New Facility Data');
+            console.log('Set Facility Data', newFacilityData);
           }
         })
         .catch((error) => {
           console.error(error);
         });
-  };
-
-  useEffect(() => {
-    const previousFacilityDataRaw = localStorage.getItem('facilityData');
-    if (previousFacilityDataRaw) {
-      const previousFacilityData: FacilityDataDTO =
-        JSON.parse(previousFacilityDataRaw);
-      const currentHour = changeTimezone(new Date(), 'America/New_York')
-          .getHours();
-      if (previousFacilityData.todayFacilityData.length === currentHour) {
-        setFacilityData(previousFacilityData);
-        console.log('Set Previous Facility Data');
-      } else {
-        getNewFacilityData();
-      }
-    } else {
-      getNewFacilityData();
-    }
   }, []);
 
   return <FacilitiesContext.Provider value={facilityData}>

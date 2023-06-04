@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {Container, Nav, Navbar} from 'react-bootstrap';
-import {MapFill, Moon, Sun} from 'react-bootstrap-icons';
+import {BarChart, Map, Moon, Sun} from 'react-bootstrap-icons';
 import {ThemeContext} from '../contexts/Theme';
 
 const Navigation = () => {
@@ -14,8 +14,6 @@ const Navigation = () => {
     <Container>
       <Navbar.Brand
         className='fw-bold text-danger'>
-        <MapFill
-          className='mx-2' />
         CatMap
       </Navbar.Brand>
       <Navbar.Toggle
@@ -25,13 +23,14 @@ const Navigation = () => {
         <Nav
           className='me-auto'>
           <Nav.Link>
+            <Map
+              className='mx-2' />
             Map
           </Nav.Link>
           <Nav.Link>
+            <BarChart
+              className='mx-2' />
             List
-          </Nav.Link>
-          <Nav.Link>
-            About
           </Nav.Link>
         </Nav>
         <Nav>
@@ -39,9 +38,11 @@ const Navigation = () => {
             onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
             {
               theme === 'light' ?
-                <Moon /> :
-                <Sun />
-            }
+                <Moon
+                  className='mx-2' /> :
+                <Sun
+                  className='mx-2' />
+            }Mode
           </Nav.Link>
         </Nav>
       </Navbar.Collapse>

@@ -44,10 +44,6 @@ const getFacilityLocation = (name: string) => {
       facilityLocation.latitude = 39.133281;
       facilityLocation.longitude = -84.511813;
       break;
-    case 'UNIVERSITY_AVE_GARAGE_LEVEL_1':
-      facilityLocation.latitude = 39.135266;
-      facilityLocation.longitude = -84.511589;
-      break;
     case 'VARSITY_VILLAGE_GARAGE':
       facilityLocation.latitude = 39.130152;
       facilityLocation.longitude = -84.515974;
