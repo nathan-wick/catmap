@@ -10,7 +10,8 @@ const Navigation = () => {
     bg={theme}
     variant={theme}
     expand='lg'
-    fixed='top'>
+    fixed='top'
+    className='shadow'>
     <Container>
       <Navbar.Brand
         className='fw-bold text-danger'>

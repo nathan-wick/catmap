@@ -7,7 +7,8 @@ const List = () => {
   const {todayFacilityData} = useContext(FacilitiesContext);
   const currentFacilityData = todayFacilityData[todayFacilityData.length - 1];
 
-  return <Row>
+  return <Row
+    className='gx-0'>
     {
       currentFacilityData && currentFacilityData
           .filter((facility) =>
