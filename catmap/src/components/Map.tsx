@@ -10,6 +10,12 @@ import {
 } from '@react-google-maps/api';
 import {Facility} from '../types/Facility';
 import {InformationWindow} from '../types/InformationWindow';
+// @ts-ignore
+import markerGreen from '../images/marker-green.svg';
+// @ts-ignore
+import markerYellow from '../images/marker-yellow.svg';
+// @ts-ignore
+import markerRed from '../images/marker-red.svg';
 
 const Map = () => {
   const {theme} = useContext(ThemeContext);
@@ -61,16 +67,13 @@ const Map = () => {
               facility.location?.latitude && facility.location?.longitude)
             .map((facility, index) => <Marker
               key={index}
-              label={facility.name}
               onClick={() => onMarkerClick(facility, true)}
-              icon={`http://maps.google.com/mapfiles/ms/icons/${ // TODO Replace with custom icons
-                facility.occupancy.available < facility.occupancy.capacity / 4 ?
-                  'red' :
-                  facility.occupancy.available <
-                    facility.occupancy.capacity / 2 ?
-                      'yellow' :
-                      'green'
-              }-dot.png`}
+              icon={facility.occupancy.available <
+                facility.occupancy.capacity / 4 ?
+                markerRed :
+                facility.occupancy.available < facility.occupancy.capacity / 2 ?
+                  markerYellow :
+                  markerGreen}
               position={{
                 lat: facility.location?.latitude ?? 0,
                 lng: facility.location?.longitude ?? 0,
@@ -81,10 +84,11 @@ const Map = () => {
                       informationWindow.name === facility.name)?.isOpen &&
                   (<InfoWindow
                     onCloseClick={() => onMarkerClick(facility, false)}>
-                    <>
+                    <div
+                      className='text-dark'>
                       <h4>{facility.name}</h4>
                       <p>{`${facility.occupancy.available} spots available`}</p>
-                    </>
+                    </div>
                   </InfoWindow>)
               }
             </Marker>)

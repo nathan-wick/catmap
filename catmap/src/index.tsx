@@ -1,8 +1,7 @@
+import './styles/custom.scss';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './styles/index.css';
 import Home from './views/Home';
-import 'bootstrap/dist/css/bootstrap.css';
 import Firebase from './contexts/Firebase';
 import Theme from './contexts/Theme';
 import Facilities from './contexts/Facilities';

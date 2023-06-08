@@ -1,4 +1,6 @@
 import React, {FC, createContext, useEffect, useState} from 'react';
+// @ts-ignore
+import colors from '../styles/custom.scss';
 
 export const ThemeContext = createContext<{
   theme: 'light' | 'dark',
@@ -27,11 +29,11 @@ export const ThemeContextProvider: FC<{
       location.reload();
     } else {
       if (theme === 'light') {
-        document.body.style.backgroundColor = '#f8f9fa';
-        document.body.style.color = '#212529';
+        document.body.style.backgroundColor = colors.light;
+        document.body.style.color = colors.dark;
       } else {
-        document.body.style.backgroundColor = '#212529';
-        document.body.style.color = '#f8f9fa';
+        document.body.style.backgroundColor = colors.dark;
+        document.body.style.color = colors.light;
       }
     }
   }, [theme]);

@@ -14,7 +14,7 @@ const Navigation = () => {
     className='shadow'>
     <Container>
       <Navbar.Brand
-        className='fw-bold text-danger'>
+        className='fw-bold text-success'>
         CatMap
       </Navbar.Brand>
       <Navbar.Toggle

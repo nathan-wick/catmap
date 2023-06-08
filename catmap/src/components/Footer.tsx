@@ -11,7 +11,7 @@ const Footer = () => <Row
   <Col
     className='text-end'>
     <p>
-      App Version: 1.0.0
+      App Version 1.0.0
     </p>
   </Col>
 </Row>;
