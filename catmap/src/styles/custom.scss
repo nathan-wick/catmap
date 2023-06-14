@@ -1,11 +1,13 @@
 $white: #FFFFFF;
 $black: #000000;
+$grey: #858585;
 $green: #06D6A0;
 $yellow: #FFD166;
 $red: #EF476F;
 
 $light: $white;
 $dark: $black;
+$secondary: $grey;
 $success: $green;
 $warning: $yellow;
 $danger: $red;
@@ -13,6 +15,7 @@ $danger: $red;
 $theme-colors: (
   "light": $light,
   "dark": $dark,
+  "secondary": $secondary,
   "success": $success,
   "warning": $warning,
   "danger": $danger
@@ -38,6 +41,7 @@ code {
 :export {
   light: $light;
   dark: $dark;
+  secondary: $secondary;
   success: $success;
   warning: $warning;
   danger: $danger;

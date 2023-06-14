@@ -2,6 +2,7 @@ import React, {FC, createContext, useEffect, useState} from 'react';
 import {FacilityDataDTO} from '../types/FacilityDataDTO';
 import {getFunctions, httpsCallable} from 'firebase/functions';
 import getFacilityLocation from '../utilities/getFacilityLocation';
+import estimateOccupancy from '../utilities/estimateOccupancy';
 
 const emptyFacilityData: FacilityDataDTO = {
   todayFacilityData: [],
@@ -23,6 +24,8 @@ export const FacilitiesContextProvider: FC<{
     getFacilityData()
         .then((result) => {
           const newFacilityData = result.data as FacilityDataDTO;
+          newFacilityData.estimatedFacilityData =
+            estimateOccupancy(newFacilityData);
           const {todayFacilityData} = newFacilityData;
           const currentFacilityData =
             todayFacilityData[todayFacilityData.length - 1];

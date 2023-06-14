@@ -13,7 +13,9 @@ const database = getFirestore();
 
 exports.getFacilityData = onCall(async () => {
   const today = changeTimezone(new Date(), "America/New_York");
-  const lastWeek = new Date(today.getDate() - 7);
+  const lastWeek = changeTimezone(new Date(), "America/New_York");
+  lastWeek.setDate(lastWeek.getDate() - 7);
+  console.log(today, lastWeek);
   const todayFacilityData = await getStoredFacilityData(today, database);
   const lastWeekFacilityData = await getStoredFacilityData(lastWeek, database);
   const facilityData: FacilityDataDTO = {
