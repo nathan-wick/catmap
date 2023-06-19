@@ -1,4 +1,4 @@
-import {Facility} from './Facility';
+import {Facility} from "./Facility";
 
 export declare interface FacilityDataDTO {
     todayFacilityData: Facility[][],

@@ -1,4 +1,4 @@
 export declare interface InformationWindow {
-  name: string,
-  isOpen: boolean,
+    name: string,
+    isOpen: boolean,
 }
