@@ -29,6 +29,7 @@ module.exports = {
         "max-statements": 0,
         "no-magic-numbers": 0,
         "no-nested-ternary": 0,
+        "no-plusplus": 0,
         "no-ternary": 0,
         "no-undef-init": 0,
         "no-undefined": 0,

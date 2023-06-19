@@ -4,11 +4,11 @@ import {FacilityDataDTO} from "../types/FacilityDataDTO";
 const estimateFacilityData = ({todayFacilityData, lastWeekFacilityData}: FacilityDataDTO) => {
 
     const estimatedFacilityData: Facility[][] = [];
-    for (let hourIndex = 0; hourIndex < lastWeekFacilityData.length; hourIndex + 1) {
+    for (let hourIndex = 0; hourIndex < lastWeekFacilityData.length; hourIndex++) {
 
         const hour = lastWeekFacilityData[hourIndex],
             estimatedFacilities: Facility[] = [];
-        for (let facilityIndex = 0; facilityIndex < hour.length; facilityIndex + 1) {
+        for (let facilityIndex = 0; facilityIndex < hour.length; facilityIndex++) {
 
             const isFirstHour = hourIndex < 1,
                 lastHourActualAvailable = isFirstHour || hourIndex > todayFacilityData.length - 1

@@ -14,7 +14,7 @@ const List = () => {
             currentFacilityData
                 ? currentFacilityData.
                     filter((facility) => facility.location?.latitude && facility.location?.longitude).
-                    sort((first, second) => first.occupancy.available - second.occupancy.available).
+                    sort((first, second) => second.occupancy.available - first.occupancy.available).
                     map((facility, index) => <Col
                         key={index}
                         lg={4}
