@@ -19,8 +19,13 @@ const estimateFacilityData = (
         estimatedFacilityData[i - 1][j].occupancy.available;
       const lastHourDifference =
         lastHourActualAvailable / lastHourEstimatedAvailable;
-      const estimatedAvailable =
+      let estimatedAvailable =
         Math.round(hour[j].occupancy.available * lastHourDifference);
+      if (estimatedAvailable > hour[j].occupancy.capacity) {
+        estimatedAvailable = hour[j].occupancy.capacity;
+      } else if (estimatedAvailable < 0) {
+        estimatedAvailable = 0;
+      }
       const estimatedFacility: Facility = {
         name: hour[j].name,
         occupancy: {

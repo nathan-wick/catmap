@@ -25,17 +25,13 @@ const Chart: FC<{thisFacilityData: Facility}> = ({thisFacilityData}) => {
     const estimatedAvailable =
       Number(estimatedFacilityData[index].find((facility) =>
         facility.name === thisFacilityData.name)?.occupancy.available);
+    const estimatedOccupancy = capacity - estimatedAvailable;
     let actualOccupancy: number | undefined;
-    let estimatedOccupancy = capacity - estimatedAvailable;
 
     if (todayHour) {
       const availableToday = Number(todayHour.find((facility) =>
         facility.name === thisFacilityData.name)?.occupancy.available);
       actualOccupancy = capacity - availableToday;
-    }
-
-    if (estimatedOccupancy < 0) {
-      estimatedOccupancy = 0; // TODO Problem here
     }
 
     return {
@@ -57,21 +53,6 @@ const Chart: FC<{thisFacilityData: Facility}> = ({thisFacilityData}) => {
       data={chartData}>
       <defs>
         <linearGradient
-          id='actualOccupancy'
-          x1='0'
-          y1='0'
-          x2='0'
-          y2='1'>
-          <stop
-            offset='5%'
-            stopColor={lineColor}
-            stopOpacity={0.8}/>
-          <stop
-            offset='95%'
-            stopColor={lineColor}
-            stopOpacity={0.4}/>
-        </linearGradient>
-        <linearGradient
           id='estimatedOccupancy'
           x1='0'
           y1='0'
@@ -86,6 +67,21 @@ const Chart: FC<{thisFacilityData: Facility}> = ({thisFacilityData}) => {
             stopColor={colors.secondary}
             stopOpacity={0}/>
         </linearGradient>
+        <linearGradient
+          id='actualOccupancy'
+          x1='0'
+          y1='0'
+          x2='0'
+          y2='1'>
+          <stop
+            offset='5%'
+            stopColor={lineColor}
+            stopOpacity={0.8}/>
+          <stop
+            offset='95%'
+            stopColor={lineColor}
+            stopOpacity={0.4}/>
+        </linearGradient>
       </defs>
       <XAxis
         dataKey='time' />
@@ -95,19 +91,19 @@ const Chart: FC<{thisFacilityData: Facility}> = ({thisFacilityData}) => {
         stroke='#f5f5f5' />
       <Tooltip />
       <Area
+        name='Estimated'
+        type='monotone'
+        dataKey='estimatedOccupancy'
+        stroke={colors.secondary}
+        fillOpacity={0.4}
+        fill='url(#estimatedOccupancy)' />
+      <Area
         name='Actual'
         type='monotone'
         dataKey='actualOccupancy'
         stroke={lineColor}
         fillOpacity={1}
         fill='url(#actualOccupancy)' />
-      <Area
-        name='Estimated'
-        type='monotone'
-        dataKey='estimatedOccupancy'
-        stroke={colors.secondary}
-        fillOpacity={1}
-        fill='url(#estimatedOccupancy)' />
     </AreaChart>
   </ResponsiveContainer>;
 };

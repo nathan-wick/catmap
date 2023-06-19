@@ -7,6 +7,7 @@ $red: #EF476F;
 
 $light: $white;
 $dark: $black;
+$primary: $grey;
 $secondary: $grey;
 $success: $green;
 $warning: $yellow;
@@ -15,6 +16,7 @@ $danger: $red;
 $theme-colors: (
   "light": $light,
   "dark": $dark,
+  "primary": $primary,
   "secondary": $secondary,
   "success": $success,
   "warning": $warning,
@@ -41,6 +43,7 @@ code {
 :export {
   light: $light;
   dark: $dark;
+  primary: $primary;
   secondary: $secondary;
   success: $success;
   warning: $warning;

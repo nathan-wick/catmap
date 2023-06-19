@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {Container, Nav, Navbar} from 'react-bootstrap';
-import {BarChart, Map, Moon, Sun} from 'react-bootstrap-icons';
+import {Moon, Sun} from 'react-bootstrap-icons';
 import {ThemeContext} from '../contexts/Theme';
 
 const Navigation = () => {
@@ -14,7 +14,7 @@ const Navigation = () => {
     className='shadow'>
     <Container>
       <Navbar.Brand
-        className='fw-bold text-success'>
+        className='fw-bold'>
         CatMap
       </Navbar.Brand>
       <Navbar.Toggle
@@ -23,16 +23,6 @@ const Navigation = () => {
         id='basic-navbar-nav'>
         <Nav
           className='me-auto'>
-          <Nav.Link>
-            <Map
-              className='mx-2' />
-            Map
-          </Nav.Link>
-          <Nav.Link>
-            <BarChart
-              className='mx-2' />
-            List
-          </Nav.Link>
         </Nav>
         <Nav>
           <Nav.Link

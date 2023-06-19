@@ -16,6 +16,8 @@ import markerGreen from '../images/marker-green.svg';
 import markerYellow from '../images/marker-yellow.svg';
 // @ts-ignore
 import markerRed from '../images/marker-red.svg';
+import {Button, Col, Row} from 'react-bootstrap';
+import {BarChart, Signpost} from 'react-bootstrap-icons';
 
 const Map = () => {
   const {theme} = useContext(ThemeContext);
@@ -77,7 +79,8 @@ const Map = () => {
               position={{
                 lat: facility.location?.latitude ?? 0,
                 lng: facility.location?.longitude ?? 0,
-              }}>
+              }}
+              animation={google.maps.Animation.DROP}>
               {
                 informationWindows.find(
                     (informationWindow: InformationWindow) =>
@@ -85,9 +88,52 @@ const Map = () => {
                   (<InfoWindow
                     onCloseClick={() => onMarkerClick(facility, false)}>
                     <div
-                      className='text-dark'>
+                      className='text-dark text-center'
+                      style={{width: '240px'}}>
                       <h4>{facility.name}</h4>
-                      <p>{`${facility.occupancy.available} spots available`}</p>
+                      <Row
+                        className='gx-0'>
+                        <Col
+                          md={6}
+                          sm={12}
+                          className='p-2'>
+                          <Button
+                            variant={facility.occupancy.available <
+                              facility.occupancy.capacity / 4 ?
+                                'danger' :
+                                facility.occupancy.available <
+                                facility.occupancy.capacity / 2 ?
+                                  'warning' :
+                                  'success'}
+                            className='w-100 text-light'
+                            onClick={() =>
+                              location.href = `#${facility.name}`}>
+                            <BarChart
+                              className='mx-2' />
+                            Occupancy
+                          </Button>
+                        </Col>
+                        <Col
+                          md={6}
+                          sm={12}
+                          className='p-2'>
+                          <Button
+                            variant={facility.occupancy.available <
+                              facility.occupancy.capacity / 4 ?
+                                'danger' :
+                                facility.occupancy.available <
+                                facility.occupancy.capacity / 2 ?
+                                  'warning' :
+                                  'success'}
+                            className='w-100 text-light'
+                            onClick={() =>
+                              window.open(`https://www.google.com/maps/@${facility.location?.latitude},${facility.location?.longitude},20z`)}>
+                            <Signpost
+                              className='mx-2' />
+                            Directions
+                          </Button>
+                        </Col>
+                      </Row>
                     </div>
                   </InfoWindow>)
               }

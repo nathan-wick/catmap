@@ -35,7 +35,6 @@ export const FacilitiesContextProvider: FC<{
               facility.location = location;
             }
             setFacilityData(newFacilityData);
-            console.log('Set Facility Data', newFacilityData);
           }
         })
         .catch((error) => {

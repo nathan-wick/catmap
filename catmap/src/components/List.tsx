@@ -23,6 +23,7 @@ const List = () => {
               md={6}
               sm={12}>
               <div
+                id={facility.name}
                 className='m-4 p-2 rounded shadow'>
                 <h1>{facility.name}</h1>
                 <p>
