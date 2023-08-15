@@ -73,11 +73,11 @@ const Chart: FC<{thisFacilityData: Facility}> = ({thisFacilityData}) => {
                     <stop
                         offset="5%"
                         stopColor={lineColor}
-                        stopOpacity={0.8}/>
+                        stopOpacity={0}/>
                     <stop
                         offset="95%"
                         stopColor={lineColor}
-                        stopOpacity={0.4}/>
+                        stopOpacity={0}/>
                 </linearGradient>
             </defs>
             <XAxis
