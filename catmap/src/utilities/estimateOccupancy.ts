@@ -17,8 +17,9 @@ const estimateFacilityData = ({todayFacilityData, lastWeekFacilityData}: Facilit
                 lastHourEstimatedAvailable = isFirstHour
                     ? hour[facilityIndex].occupancy.available
                     : estimatedFacilityData[hourIndex - 1][facilityIndex].occupancy.available,
-                lastHourDifference = lastHourActualAvailable / lastHourEstimatedAvailable;
-            let estimatedAvailable = Math.round(hour[facilityIndex].occupancy.available * lastHourDifference);
+                lastHourDifference = lastHourActualAvailable - lastHourEstimatedAvailable;
+            // eslint-disable-next-line no-extra-parens
+            let estimatedAvailable = Math.round(hour[facilityIndex].occupancy.available + (lastHourDifference / 2));
             if (estimatedAvailable > hour[facilityIndex].occupancy.capacity) {
 
                 estimatedAvailable = hour[facilityIndex].occupancy.capacity;
